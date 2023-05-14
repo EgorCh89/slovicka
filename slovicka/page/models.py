@@ -8,7 +8,10 @@ class Pair(models.Model):
     def __str__(self):
         return f"{self.statement} : {self.definition}"
 
-        
-    
+
+
 class Dictionary(models.Model):
+    name = models.TextField( default=None)
     pairs = models.ManyToManyField(Pair, related_name="pairs")
+    def __str__(self) -> str:
+        return f"{self.name}"
