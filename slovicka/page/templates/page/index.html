@@ -1,6 +1,16 @@
 {% extends 'page/layout.html' %}
 
 {% block body %}
+{% if not registrated %}
+<h1>Welcome to my page</h1>
+<a href="{% url 'login' %}">Log in</a>
+or
+<a href="{% url 'register' %}">Register</a>
+{% else %}
 <h1>Welcome {{user}}</h1>
+<a href="{% url 'logout' %}">Log out.</a>
+
+{% endif %}
+
 
 {% endblock %}
