@@ -13,11 +13,11 @@ def create_new(request):
     if request.method == "POST":
         form = NewDictForm(request.POST)
         if form.is_valid():
-            name = form.changed_data['name']
-            pub = form.changed_data['public']
+            name = form.changed_data["name"]
+            pub = form.changed_data["publi"]
             dict = Dictionary(name=name,date=datetime.datetime.now(), public=pub,creator_id=request.session.user.id)
             print(request.session.user.id)
-            return render (request,f"create/edit/{name}",{
+            return render (request,f"/{name}/edit/",{
                 # and object of dict
             })
         else:
