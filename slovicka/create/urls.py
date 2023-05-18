@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<str:name>', views.edit, name='dict'),
-    path('dict/<str:name>/edit', views.create_new, name='edit'),
-    path('newDict',views.create_new,name="new_dict")
+    path('new',views.create_new,name="new_dict"),
+    path('<str:name>/edit', views.edit, name='edit'),
+    
 ]

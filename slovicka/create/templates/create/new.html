@@ -4,10 +4,15 @@
 
 <h1>Create new lecture</h1>
 
-<form action="{% url 'new' %}" method="post">
+<form action="{% url 'new_dict' %}" method="post">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit">
+    <ul>
+    {% for m in message %}
+    <li>{{m}}</li>
+    {% endfor %}
+    </ul>
 </form>
 
 {% endblock %}
