@@ -44,7 +44,6 @@ def edit(request,name):
 
     dict = Dictionary.objects.all().filter(creator_id=request.user.id,name=name)
     if request.method == "GET":
-        print(Pair.objects.all().filter(dict=dict[0]))
         return render(request,'create/edit.html',{
             "dict": dict[0],
             "pairs":Pair.objects.all().filter(dict=dict[0]).values()
@@ -52,6 +51,30 @@ def edit(request,name):
     if request.method == "POST":
         form = request.POST
         print(form)
+        st = form.getlist('st')
+        de = form.getlist('de')
+        pairs = Pair.objects.all().filter(dict=dict[0])
+        # uptade existing
+        print("pairs", len(pairs))
+        print("st", len(st))
+        print("de", len(de))
+        for i in range(len(pairs)):
+            if st[i] != "" and de[i] != "":
+                if pairs[i].statement != st[i]:
+                    pairs[i].statement = st[i]
+                    pairs[i].save()
+                if pairs[i].definition != de[i]:
+                    pairs[i].definition = de[i]
+                    pairs[i].save()
+            if st[i] == de[i] == "":
+                pairs[i].delete()
+                pass
+        # adding new
+        for i in range(len(pairs),len(st)):
+            if st[i] != "" and de[i] != "":
+                p = Pair(statement=st[i],definition=de[i],dict=dict[0])  
+                p.save()    
+            
         return render(request,'create/edit.html',{
             "dict": dict[0],
             "pairs":Pair.objects.all().filter(dict=dict[0]).values()

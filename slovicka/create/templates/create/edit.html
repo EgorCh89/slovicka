@@ -7,13 +7,13 @@
 <form action="{% url 'edit' name=dict.name %}" method="post">
 {% for pair  in pairs %}
 <input type="text" name="st" id="{{pair.id}}" value="{{pair.statement}}">
-<input type="text" name="dic" id="{{pair.id}}" value="{{pair.definition}}">
+<input type="text" name="de" id="{{pair.id}}" value="{{pair.definition}}">
 <br>
 <p></p>
 {% endfor %}
 
 <input type="text" name="st" id="{{pairs.length}}" value="" placeholder="new statement">
-<input type="text" name="dic" id="{{pairs|length}}" value="" placeholder="new definition">
+<input type="text" name="de" id="{{pairs|length}}" value="" placeholder="new definition">
 <br>
 
 {% csrf_token %}
