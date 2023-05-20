@@ -9,15 +9,6 @@ or
 {% else %}
 <h1>Welcome {{user}}</h1>
 <a href="{% url 'logout' %}">Log out.</a>
-
-<h2>Edit your dictionarys</h2>
-<ul>
-    {% for dict in dictionarys %}
-    <li>
-        <a href="{% url 'edit' name=dict.name %}">{{dict.name}}</a>
-    </li>
-    {% endfor %}
-</ul>
 {% endif %}
 
 

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'page',
     'registration',
     'create',
+    'learn',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

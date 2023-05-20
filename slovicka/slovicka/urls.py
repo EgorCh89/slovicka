@@ -22,4 +22,5 @@ urlpatterns = [
     path('',include("page.urls") ),
     path('register/',include("registration.urls") ),
     path('dict/',include("create.urls") ),
+    path('learn/',include("learn.urls") ),
 ]

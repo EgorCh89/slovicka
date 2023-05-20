@@ -1,0 +1,26 @@
+{% extends 'page/layout.html' %}
+
+{% block body %}
+<h1>{{dict}} cards</h1>
+
+{% for pair in pairs %}
+<button  id="{{pair.id}}">{{pair.statement}}</button>
+<p></p>
+<br>
+{% endfor %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        {% for pair in pairs %}
+        document.getElementById('{{pair.id}}').onclick = function(){
+            if (this.innerHTML === "{{pair.statement}}"){
+                this.innerHTML = "{{pair.definition}}" 
+            }else{
+                this.innerHTML = "{{pair.statement}}"
+            }
+        }
+        {% endfor %}
+    });
+</script>
+{% endblock %}

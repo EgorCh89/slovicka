@@ -1,0 +1,20 @@
+{% extends 'page/layout.html' %}
+
+{% block body %}
+<h1 id="title">learn page</h1>
+<h1>lection {{dict}}</h1>
+
+
+
+<button  id="cards">cards</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        document.querySelector('#cards').onclick = function(){
+            location.href = "{% url 'cards' name=dict.name %}";
+        }
+
+    });
+</script>
+{% endblock %}

@@ -13,7 +13,9 @@ class NewDictForm(forms.Form):
 
 # Create your views here.
 def index(request):
-    return render(request,'create/index.html')
+    return render(request,'create/index.html',{
+        'dicts': Dictionary.objects.all().filter(creator_id=request.user.id),
+    })
 
 def create_new(request):
     if request.method == "POST":

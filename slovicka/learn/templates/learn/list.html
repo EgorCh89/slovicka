@@ -1,0 +1,14 @@
+{% extends 'page/layout.html' %}
+
+{% block body %}
+<h1 id="title">learn page</h1>
+<h1>lection {{dict}}</h1>
+
+<ul>
+{% for dict in dicts %}
+<li>
+    <a href="{% url 'learn' name=dict.name %}">learn {{dict.name}}</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
