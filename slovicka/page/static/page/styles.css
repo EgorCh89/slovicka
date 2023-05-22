@@ -1,0 +1,58 @@
+body, nav {
+    background-color: #283618;
+}
+#main, .row {
+    background-color: #606C38;
+    justify-content: center;
+    text-align: center;
+}
+
+h1, h2, li {
+    color: #FEFAE0
+}
+a {
+    color: #DDA15E;
+    text-decoration: none;
+}
+a:hover{
+    color: #BC6C25;
+}
+a:visited {
+
+    color: #DDA15E;
+}
+.row, .col-8{
+    margin-bottom: 11rem;
+    border-radius: 25px;
+    padding: 20px;
+}
+.navbar-toggler {
+    color: #DDA15E;
+    background-color: #DDA15E;
+}
+span {
+    color: #DDA15E;
+}
+li {
+    list-style-type: none;
+}
+.card-text {
+    color: #BC6C25;
+    margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.card {
+    border-radius: 25px;
+    padding: 20px;
+    background-color: #283618;
+}
+.btn-card {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+
+}

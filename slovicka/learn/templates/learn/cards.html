@@ -9,11 +9,11 @@
 
 {% for pair in pairs %}
 
-<button  id="{{pair.id}}">
+<button class="btn-card"  id="{{pair.id}}">
 
 <div class="card" style="width: 18rem; height: 18rem;">
     <div class="card-body">
-      <h2 class="card-title" id="text-{{pair.id}}">{{pair.statement}}</h5>
+      <h1 class="card-text" id="text-{{pair.id}}">{{pair.statement}}</h1>
     </div>
   </div>
 
