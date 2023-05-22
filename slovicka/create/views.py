@@ -76,7 +76,7 @@ def edit(request,name):
             if st[i] != "" and de[i] != "":
                 p = Pair(statement=st[i],definition=de[i],dict=dict[0])  
                 p.save()    
-            
+        dict[0].date=datetime.datetime.now()
         return render(request,'create/edit.html',{
             "dict": dict[0],
             "pairs":Pair.objects.all().filter(dict=dict[0]).values()

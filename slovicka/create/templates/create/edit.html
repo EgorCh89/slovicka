@@ -12,11 +12,40 @@
 <p></p>
 {% endfor %}
 
-<input type="text" name="st" id="{{pairs.length}}" value="" placeholder="new statement">
-<input type="text" name="de" id="{{pairs|length}}" value="" placeholder="new definition">
+<input type="text" name="st" id="last_st" value="" placeholder="new statement">
+<input type="text" name="de" id="last_de" value="" placeholder="new definition">
 <br>
 
 {% csrf_token %}
-<input type="submit" value="Save">
+<input id="submit" type="submit" value="Save">
 </form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+
+        document.querySelector('#last_de').onkeyup = ()=>{
+            if(document.querySelector('#last_de').value.length > 0 && document.querySelector('#last_st').value.length > 0){
+                const st_in = document.createElement('input');
+                const de_in = document.createElement('input');
+                st_in.placeholder = "new statement"
+                de_in.placeholder = "new definition"
+
+                document.querySelector('#last_de').id = ""
+                document.querySelector('#last_st').id = ""
+
+                st_in.id = "last_st"
+                de_in.id = "last_de"
+                
+                const sub = document.createElement('input')
+                sub.type = "submit"
+                sub.value = "submit"
+                sub.id = "submit"
+                //document.querySelector('form').append(sub)
+                //document.querySelector('form').append(st_in)
+                //document.querySelector('form').append(de_in)
+                
+        }
+        }
+    })
+</script>
 {% endblock %}

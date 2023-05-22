@@ -3,8 +3,21 @@
 {% block body %}
 <h1>{{dict}} cards</h1>
 
+{% if not pairs %}
+<h2>Empty lecture</h2>
+{% endif %}
+
 {% for pair in pairs %}
-<button  id="{{pair.id}}">{{pair.statement}}</button>
+
+<button  id="{{pair.id}}">
+
+<div class="card" style="width: 18rem; height: 18rem;">
+    <div class="card-body">
+      <h2 class="card-title" id="text-{{pair.id}}">{{pair.statement}}</h5>
+    </div>
+  </div>
+
+</button>
 <p></p>
 <br>
 {% endfor %}
@@ -14,10 +27,12 @@
 
         {% for pair in pairs %}
         document.getElementById('{{pair.id}}').onclick = function(){
-            if (this.innerHTML === "{{pair.statement}}"){
-                this.innerHTML = "{{pair.definition}}" 
+            text = document.getElementById("text-{{pair.id}}")
+            console.log("{{pair.id}}")
+            if (text.innerHTML === "{{pair.statement}}"){
+                text.innerHTML = "{{pair.definition}}" 
             }else{
-                this.innerHTML = "{{pair.statement}}"
+                text.innerHTML = "{{pair.statement}}"
             }
         }
         {% endfor %}
