@@ -10,3 +10,11 @@ def index(request):
         "registrated": not request.user == AnonymousUser(),
         "dictionarys": Dictionary.objects.all().filter(creator_id=request.user.id)
     })
+def recent_dicts(request):
+    a = Dictionary.objects.all().filter(creator_id=request.user.id).order_by('date').reverse()
+    b = []
+    for obj in a:
+        b.append(obj.name)
+    return render(request,'page/list.html',{
+        "dicts":b
+    })
