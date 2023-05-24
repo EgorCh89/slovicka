@@ -6,46 +6,75 @@
 <p>edditing</p>
 <form action="{% url 'edit' name=dict.name %}" method="post">
 {% for pair  in pairs %}
+<span>
 <input type="text" name="st" id="{{pair.id}}" value="{{pair.statement}}">
 <input type="text" name="de" id="{{pair.id}}" value="{{pair.definition}}">
-<br>
-<p></p>
+</span>
 {% endfor %}
-
+<span>
 <input type="text" name="st" id="last_st" value="" placeholder="new statement">
 <input type="text" name="de" id="last_de" value="" placeholder="new definition">
-<br>
+</span>
 
 {% csrf_token %}
-<input id="submit" type="submit" value="Save">
+<br>
+<input id="save" type="submit" value="Save">
 </form>
 
 <script>
     document.addEventListener("DOMContentLoaded", ()=>{
 
-        document.querySelector('#last_de').onkeyup = ()=>{
-            if(document.querySelector('#last_de').value.length > 0 && document.querySelector('#last_st').value.length > 0){
+        setNewInp = function (inp1,inp2){
+
+            let limited = false;
+            onKey = () =>{
+            if(inp1.value.length > 0 && inp2.value.length > 0 && limited===false){
                 const st_in = document.createElement('input');
                 const de_in = document.createElement('input');
+                const span = document.createElement('span')
+                const br = document.createElement('br');
+                const p = document.createElement('p');
                 st_in.placeholder = "new statement"
                 de_in.placeholder = "new definition"
+                console.log("in if")
+                
+                st_in.id = ""+ (inp1.id + 1)
+                de_in.id = ""+ (inp2.id + 1)
+                
+                inp1.id = "";
+                inp2.id = "";
 
-                document.querySelector('#last_de').id = ""
-                document.querySelector('#last_st').id = ""
 
-                st_in.id = "last_st"
-                de_in.id = "last_de"
+                de_in.name = "de"
+                st_in.name = "st"
                 
                 const sub = document.createElement('input')
                 sub.type = "submit"
-                sub.value = "submit"
-                sub.id = "submit"
-                //document.querySelector('form').append(sub)
-                //document.querySelector('form').append(st_in)
-                //document.querySelector('form').append(de_in)
+                sub.value = "save"
+                sub.id = "save"
+                
+                span.append(st_in)
+                span.append(" ")
+                span.append(de_in)
+                
+                
+                document.querySelector('form').append(span)
+                document.querySelector('form').append(br)
+                document.querySelector('form').append(sub)
+                document.querySelector('#save').remove()
+                limited = true;
+                setNewInp(st_in,de_in)
                 
         }
+        } 
+        inp1.onkeyup = onKey
+        inp2.onkeyup = onKey
         }
+
+        setNewInp(document.querySelector('#last_st'),document.querySelector('#last_de'))
+        
+        document.querySelector('#{{pair.id}}').remove()
+        
     })
 </script>
 {% endblock %}
