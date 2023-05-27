@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Dictionary(models.Model):
-    name = models.TextField( default=None, unique=True)
+    name = models.TextField( default=None, unique=False)
     date = models.DateTimeField()
     creator_id = models.IntegerField(default=1)
     public = models.BooleanField(default=True)
