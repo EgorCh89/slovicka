@@ -1,80 +1,117 @@
-{% extends 'page/layout.html' %}
-
-{% block body %}
+{% extends 'page/layout.html' %} {% block body %}
 <h1>Edit page</h1>
 <h2>Edditing {{dict.name}}</h2>
-<p>edditing</p>
 <form action="{% url 'edit' name=dict.name %}" method="post">
-{% for pair  in pairs %}
-<span>
-<input type="text" name="st" id="{{pair.id}}" value="{{pair.statement}}">
-<input type="text" name="de" id="{{pair.id}}" value="{{pair.definition}}">
-</span>
-{% endfor %}
-<span>
-<input type="text" name="st" id="last_st" value="" placeholder="new statement">
-<input type="text" name="de" id="last_de" value="" placeholder="new definition">
-</span>
+  {% for pair in pairs %}
+  <div class="d-inline">
+    <div class="input-group mb-1">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >statement</span
+      >
+      <input
+        type="text"
+        class="form-control"
+        value="{{pair.statement}}"
+        aria-label="Username"
+      />
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >definition</span
+      >
+      <input
+        type="text"
+        class="form-control"
+        value="{{pair.definition}}"
+        aria-label="Server"
+      />
+    </div>
+  </div>
 
-{% csrf_token %}
-<br>
-<input id="save" type="submit" value="Save">
+  {% endfor %}
+
+  <div class="input-group mb-1">
+    <span class="input-group-text" id="inputGroup-sizing-default"
+      >statement</span
+    >
+    <input
+      type="text"
+      class="form-control"
+      name="st"
+      id="last_st"
+      value=""
+      placeholder="new statement"
+    />
+    <span class="input-group-text" id="inputGroup-sizing-default"
+      >definition</span
+    >
+    <input
+      type="text"
+      class="form-control"
+      name="de"
+      id="last_de"
+      value=""
+      placeholder="new definition"
+    />
+  </div>
+
+  {% csrf_token %}
+  <input class="btn btn-primary" type="submit" value="Submit" />
 </form>
 
 <script>
-    document.addEventListener("DOMContentLoaded", ()=>{
+  document.addEventListener("DOMContentLoaded", () => {
+    setNewInp = function (inp1, inp2) {
+      let limited = false;
+      onKey = () => {
+        if (
+          inp1.value.length > 0 &&
+          inp2.value.length > 0 &&
+          limited === false
+        ) {
+          const st_in = document.createElement("input");
+          const de_in = document.createElement("input");
+          const span = document.createElement("span");
+          const br = document.createElement("br");
+          const p = document.createElement("p");
+          st_in.placeholder = "new statement";
+          de_in.placeholder = "new definition";
+          console.log("in if");
 
-        setNewInp = function (inp1,inp2){
+          st_in.id = "" + (inp1.id + 1);
+          de_in.id = "" + (inp2.id + 1);
 
-            let limited = false;
-            onKey = () =>{
-            if(inp1.value.length > 0 && inp2.value.length > 0 && limited===false){
-                const st_in = document.createElement('input');
-                const de_in = document.createElement('input');
-                const span = document.createElement('span')
-                const br = document.createElement('br');
-                const p = document.createElement('p');
-                st_in.placeholder = "new statement"
-                de_in.placeholder = "new definition"
-                console.log("in if")
-                
-                st_in.id = ""+ (inp1.id + 1)
-                de_in.id = ""+ (inp2.id + 1)
-                
-                inp1.id = "";
-                inp2.id = "";
+          inp1.id = "";
+          inp2.id = "";
 
+          de_in.name = "de";
+          st_in.name = "st";
 
-                de_in.name = "de"
-                st_in.name = "st"
-                
-                const sub = document.createElement('input')
-                sub.type = "submit"
-                sub.value = "save"
-                sub.id = "save"
-                
-                span.append(st_in)
-                span.append(" ")
-                span.append(de_in)
-                
-                
-                document.querySelector('form').append(span)
-                document.querySelector('form').append(br)
-                document.querySelector('form').append(sub)
-                document.querySelector('#save').remove()
-                limited = true;
-                setNewInp(st_in,de_in)
-                
+          const sub = document.createElement("input");
+          sub.type = "submit";
+          sub.value = "save";
+          sub.id = "save";
+
+          span.append(st_in);
+          span.append(" ");
+          span.append(de_in);
+
+          document.querySelector("form").append(span);
+          document.querySelector("form").append(br);
+          document.querySelector("form").append(sub);
+          document.querySelector("#save").remove();
+          limited = true;
+          setNewInp(st_in, de_in);
         }
-        } 
-        inp1.onkeyup = onKey
-        inp2.onkeyup = onKey
-        }
+      };
+      inp1.onkeyup = onKey;
+      inp2.onkeyup = onKey;
+    };
 
-        setNewInp(document.querySelector('#last_st'),document.querySelector('#last_de'))
-        
-        document.querySelector('#{{pair.id}}').remove()
-        
-    })
+    setNewInp(
+      document.querySelector("#last_st"),
+      document.querySelector("#last_de")
+    );
+
+    document.querySelector("#{{pair.id}}").remove();
+  });
 </script>
 {% endblock %}
