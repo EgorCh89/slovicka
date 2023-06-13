@@ -1,19 +1,15 @@
-{% extends 'page/layout.html' %}
-
-{% block body %}
+{% extends 'page/layout.html' %} {% block body %}
 
 <h1>Create new lecture</h1>
 
+{% if not registrated %}
 <form action="{% url 'new_dict' %}" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit">
-    <ul>
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" />
+  <ul>
     {% for m in message %}
     <li>{{m}}</li>
     {% endfor %}
-    </ul>
+  </ul>
 </form>
-
 {% endblock %}
-

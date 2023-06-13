@@ -2,8 +2,8 @@ from django.shortcuts import render
 from page.models import *
 # Create your views here.
 # Create your views here.
-def index(request, name):
-    dict = Dictionary.objects.all().filter(creator_id=request.user.id, name=name)
+def index(request, id):
+    dict = Dictionary.objects.all().filter(creator_id=request.user.id, pk=id)
     dict = dict[0]
 
     pairs = Pair.objects.all().filter(dict=dict)
@@ -18,8 +18,8 @@ def index_all(request):
         'dicts':dict,
     })
 
-def cards(request, name):
-    dict = Dictionary.objects.all().filter(creator_id=request.user.id, name=name)
+def cards(request, id):
+    dict = Dictionary.objects.all().filter(creator_id=request.user.id, pk=id)
     dict = dict[0]
 
     pairs = Pair.objects.all().filter(dict=dict)

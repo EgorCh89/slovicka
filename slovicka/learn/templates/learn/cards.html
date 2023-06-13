@@ -1,41 +1,36 @@
-{% extends 'page/layout.html' %}
-
-{% block body %}
+{% extends 'page/layout.html' %} {% block body %}
 <h1>{{dict}} cards</h1>
 
 {% if not pairs %}
 <h2>Empty lecture</h2>
 {% endif %}
-
-{% for pair in pairs %}
-
-<button class="btn-card"  id="{{pair.id}}">
-
-<div class="card" style="width: 18rem; height: 18rem;">
-    <div class="card-body">
-      <h1 class="card-text" id="text-{{pair.id}}">{{pair.statement}}</h1>
-    </div>
+<div class="row row-cols-1" style="justify-content: center">
+  {% for pair in pairs %}
+  <div class="col">
+    <button class="btn-card" id="{{pair.id}}">
+      <div class="card" style="width: 18rem; height: 18rem">
+        <div class="card-body">
+          <h1 class="card-text" id="text-{{pair.id}}">{{pair.statement}}</h1>
+        </div>
+      </div>
+    </button>
   </div>
-
-</button>
-<p></p>
-<br>
-{% endfor %}
-
+  {% endfor %}
+</div>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
 
-        {% for pair in pairs %}
-        document.getElementById('{{pair.id}}').onclick = function(){
-            text = document.getElementById("text-{{pair.id}}")
-            console.log("{{pair.id}}")
-            if (text.innerHTML === "{{pair.statement}}"){
-                text.innerHTML = "{{pair.definition}}" 
-            }else{
-                text.innerHTML = "{{pair.statement}}"
-            }
-        }
-        {% endfor %}
-    });
+      {% for pair in pairs %}
+      document.getElementById('{{pair.id}}').onclick = function(){
+          text = document.getElementById("text-{{pair.id}}")
+          console.log("{{pair.id}}")
+          if (text.innerHTML === "{{pair.statement}}"){
+              text.innerHTML = "{{pair.definition}}"
+          }else{
+              text.innerHTML = "{{pair.statement}}"
+          }
+      }
+      {% endfor %}
+  });
 </script>
 {% endblock %}

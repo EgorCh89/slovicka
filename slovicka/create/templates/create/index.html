@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1>Edit your dictionarys</h2>
+<h1>Edit your dictionaries</h2>
 <ul>
     {% for dict in dicts %}
     <li>
@@ -10,6 +10,8 @@
     </li>
     {% endfor %}
 </ul>
+{% if registrated %}
 <a href="{% url 'new_dict'%}">create new lecture</a>
+{% else %} <p>You need to registrate first.</p> {% endif %} 
 
 {% endblock %}

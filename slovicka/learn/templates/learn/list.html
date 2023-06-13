@@ -1,13 +1,13 @@
-{% extends 'page/layout.html' %}
-
-{% block body %}
+{% extends 'page/layout.html' %} {% block body %}
 <h1 id="title">learn page</h1>
 
 <ul>
-{% for dict in dicts %}
-<li>
-    <a class="" href="{% url 'learn' name=dict.name %}">learn {{dict.name}}</a>
-</li>
-{% endfor %}
+  {% for dict in dicts %}
+  <li>
+    <button class="btn" href="{% url 'learn' id=dict.pk %}">
+      <a class="" href="{% url 'learn' id=dict.pk %}">learn {{dict.name}}</a>
+    </button>
+  </li>
+  {% endfor %}
 </ul>
 {% endblock %}
