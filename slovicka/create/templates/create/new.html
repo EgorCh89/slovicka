@@ -2,7 +2,6 @@
 
 <h1>Create new lecture</h1>
 
-{% if not registrated %}
 <form action="{% url 'new_dict' %}" method="post">
   {% csrf_token %} {{form.as_p}}
   <input type="submit" />
@@ -12,4 +11,4 @@
     {% endfor %}
   </ul>
 </form>
-{% endblock %}
+{% else %} You need togeristrate first. {% endif %} {% endblock %}
